@@ -78,6 +78,11 @@ h1 {
 h1 em { font-style: italic; color: var(--accent); }
 .dek { font-size: 19px; line-height: 1.5; margin: 0; max-width: 34ch; }
 
+/* Lookbook photo grid */
+.lookbook { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
+@media (max-width: 560px) { .lookbook { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.lookbook img { display: block; width: 100%; max-width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 30%; background: var(--card); }
+
 /* Flat-lay of swatches */
 .flatlay {
   display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px;
@@ -148,18 +153,15 @@ body { margin: 0; }
     <h1>Pack less. <em>Wear more.</em></h1>
     <p class="dek">Tell it about your trip. It builds a carry-on capsule from your own wardrobe, styled to your taste, with an outfit for every day.</p>
 
-    <div class="flatlay" aria-label="Ten pieces in a sample capsule">
-      <div class="sw lt" style="background:#f6f2ea">Tee</div>
-      <div class="sw lt" style="background:#c9c0b0">Knit</div>
-      <div class="sw dk" style="background:#1e2840">Shirt</div>
-      <div class="sw lt" style="background:#e4d9c6">Cami</div>
-      <div class="sw dk" style="background:#141312">Dress</div>
-      <div class="sw dk" style="background:#2f3a52">Jeans</div>
-      <div class="sw lt" style="background:#b8956a">Trouser</div>
-      <div class="sw dk" style="background:#9a7348">Trench</div>
-      <div class="sw lt" style="background:#ede7dc">Sneaker</div>
-      <div class="sw dk" style="background:#3a2e24">Loafer</div>
-    </div>
+    <figure class="lookbook" aria-label="Inspiration looks">
+      <img src="looks/look-1.jpg" alt="Stone trench coat and black boots, walking past an autumn shopfront">
+      <img src="looks/look-2.jpg" alt="Belted white blazer with wide-leg jeans on city steps">
+      <img src="looks/look-3.jpg" alt="Taupe trouser suit over a white tee">
+      <img src="looks/look-4.jpg" alt="Grey blazer, white tee and rolled jeans by the water">
+      <img src="looks/look-5.jpg" alt="White linen top and linen trousers in the sun">
+      <img src="looks/look-6.jpg" alt="Long trench over a black knit dress with tall black boots">
+    </figure>
+    <p class="note" style="margin-top:-12px">Photos from Unsplash.</p>
     <div class="maths">
       <span class="n">10</span><span class="l">pieces</span>
       <span class="x">make</span>
