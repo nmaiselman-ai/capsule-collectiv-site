@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Tell it about your trip. It builds a carry-on capsule from your own wardrobe, styled to your taste, with an outfit for every day.">
+<title>The Capsule Collectiv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single magazine issue — masthead, cover line, then short numbered features down one column, closing on the call to open the app. */
+:root {
+  --bg: #f3eee5;
+  --card: #fbf8f2;
+  --ink: #141312;
+  --muted: #5c554d;
+  --line: #d9cfbf;
+  --accent: #9a7348;
+  --camel: #b8956a;
+  --navy: #1e2840;
+  --stone: #c9c0b0;
+  --sand: #e4d9c6;
+  --btn-bg: #141312;
+  --btn-fg: #f3eee5;
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --body: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15130f; --card: #1e1b16; --ink: #f1ebe0; --muted: #b3a998; --line: #3a342b;
+    --accent: #cfa877; --btn-bg: #f1ebe0; --btn-fg: #15130f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15130f; --card: #1e1b16; --ink: #f1ebe0; --muted: #b3a998; --line: #3a342b;
+  --accent: #cfa877; --btn-bg: #f1ebe0; --btn-fg: #15130f; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* Masthead */
+.mast {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--ink); padding-bottom: 10px;
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.logo { font-family: var(--display); font-size: 20px; letter-spacing: 0.02em; text-transform: none; color: var(--ink); }
+.logo b { font-weight: 700; letter-spacing: 0.12em; }
+.logo i { font-style: italic; }
+
+/* Cover */
+.cover { display: flex; flex-direction: column; gap: 22px; margin-top: -24px; }
+.kicker { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+h1 {
+  font-family: var(--display); font-weight: 400; margin: 0;
+  font-size: clamp(48px, 13vw, 92px); line-height: 0.95; letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+h1 em { font-style: italic; color: var(--accent); }
+.dek { font-size: 19px; line-height: 1.5; margin: 0; max-width: 34ch; }
+
+/* Flat-lay of swatches */
+.flatlay {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  background: var(--card); border: 1px solid var(--line); padding: 14px;
+}
+.sw { aspect-ratio: 3 / 4; max-width: 100%; display: flex; align-items: flex-end; padding: 6px;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.sw.dk { color: #f3eee5; } .sw.lt { color: #141312; }
+.maths { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.maths .n { font-family: var(--display); font-size: 44px; line-height: 1; }
+.maths .l { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.maths .x { font-family: var(--display); font-style: italic; font-size: 26px; color: var(--accent); }
+
+/* Sections */
+section { display: flex; flex-direction: column; gap: 14px; }
+.label { display: flex; gap: 12px; align-items: baseline; border-top: 1px solid var(--line); padding-top: 14px;
+  font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.label span:first-child { font-family: var(--display); font-size: 15px; letter-spacing: 0; text-transform: none; color: var(--accent); font-style: italic; }
+h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 7vw, 38px); line-height: 1.12; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 62ch; }
+.muted { color: var(--muted); }
+
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.steps li { display: grid; grid-template-columns: 44px 1fr; gap: 4px 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.steps li:first-child { border-top: 1px solid var(--line); }
+.steps .num { font-family: var(--display); font-size: 22px; color: var(--accent); line-height: 1.2; }
+.steps strong { font-weight: 600; display: block; }
+.steps p { color: var(--muted); font-size: 15px; grid-column: 2; }
+
+blockquote {
+  margin: 0; padding: 4px 0 4px 18px; border-left: 2px solid var(--camel);
+  font-family: var(--display); font-style: italic; font-size: 24px; line-height: 1.35; text-wrap: balance;
+}
+
+.who { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.who div { background: var(--card); border: 1px solid var(--line); padding: 14px; font-size: 15px; }
+.who b { display: block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
+@media (max-width: 460px) { .who { grid-template-columns: 1fr; } }
+
+/* Call to action */
+.cta { display: flex; flex-direction: column; gap: 16px; align-items: stretch; text-align: center; padding-top: 8px; }
+.cta h2 { font-size: clamp(34px, 9vw, 52px); }
+.btn {
+  display: block; background: var(--btn-bg); color: var(--btn-fg); text-decoration: none;
+  font-family: var(--body); font-weight: 600; font-size: 15px; letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 24px 20px; transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn span { font-family: var(--display); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 22px; font-weight: 400; margin-left: 8px; }
+.btn:hover { background: var(--accent); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.note { font-size: 13px; color: var(--muted); }
+.end { font-family: var(--display); font-style: italic; text-align: center; color: var(--muted); }
+.end::after { content: " ■"; font-style: normal; color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+body { margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="mast">
+    <span class="logo"><b>THE CAPSULE</b> <i>Collectiv</i></span>
+    <span>Hackday · 2026</span>
+  </header>
+
+  <div class="cover">
+    <div class="kicker">The idea</div>
+    <h1>Pack less. <em>Wear more.</em></h1>
+    <p class="dek">Tell it about your trip. It builds a carry-on capsule from your own wardrobe, styled to your taste, with an outfit for every day.</p>
+
+    <div class="flatlay" aria-label="Ten pieces in a sample capsule">
+      <div class="sw lt" style="background:#f6f2ea">Tee</div>
+      <div class="sw lt" style="background:#c9c0b0">Knit</div>
+      <div class="sw dk" style="background:#1e2840">Shirt</div>
+      <div class="sw lt" style="background:#e4d9c6">Cami</div>
+      <div class="sw dk" style="background:#141312">Dress</div>
+      <div class="sw dk" style="background:#2f3a52">Jeans</div>
+      <div class="sw lt" style="background:#b8956a">Trouser</div>
+      <div class="sw dk" style="background:#9a7348">Trench</div>
+      <div class="sw lt" style="background:#ede7dc">Sneaker</div>
+      <div class="sw dk" style="background:#3a2e24">Loafer</div>
+    </div>
+    <div class="maths">
+      <span class="n">10</span><span class="l">pieces</span>
+      <span class="x">make</span>
+      <span class="n">36</span><span class="l">looks</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="label"><span>Nº 1</span><span>The problem</span></div>
+    <h2>A full wardrobe, and still nothing to wear.</h2>
+    <p>Today the routine goes like this: pick one piece, search Pinterest for how others style it, then flick between the app and the wardrobe trying to rebuild the look from what you own.</p>
+    <blockquote>Finding inspiration is easy. Turning it into an outfit from your own clothes is the hard part.</blockquote>
+    <p>Packing makes it harder. You need many outfits from a few pieces, for weather you can't predict and occasions you can't get wrong.</p>
+  </section>
+
+  <section>
+    <div class="label"><span>Nº 2</span><span>Who it's for</span></div>
+    <h2>People with plenty of clothes and a Pinterest habit.</h2>
+    <div class="who">
+      <div><b>The stylish packer</b>Already saves outfit ideas to Pinterest and Instagram, and wants a carry-on that still feels like them.</div>
+      <div><b>The overthinker</b>Stands in front of a full rail every morning and can't decide. Wants a stylist who knows what they own.</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label"><span>Nº 3</span><span>What it does</span></div>
+    <h2>Five short chapters, from trip details to a finished packing list.</h2>
+    <ol class="steps">
+      <li><span class="num">01</span><div><strong>The Trip</strong></div><p>Destination, dates with a live forecast for each day, luggage size and any special occasions, like a wedding.</p></li>
+      <li><span class="num">02</span><div><strong>The Wardrobe</strong></div><p>Tick the basics you own from a starter library, or add your own pieces with a photo. ✦ marks the ones that suit this trip.</p></li>
+      <li><span class="num">03</span><div><strong>The Mood</strong></div><p>Optional. Upload inspiration looks or pick a style vibe, and the colours steer your outfits.</p></li>
+      <li><span class="num">04</span><div><strong>The Edit</strong></div><p>A look card for every day and occasion, plus the packing list. Swap pieces, lock favourites, rate looks ♥ or ✕, or reshuffle.</p></li>
+      <li><span class="num">05</span><div><strong>The Checklist</strong></div><p>Tick pieces off as they go in the case, then share or save the list. Bon voyage.</p></li>
+    </ol>
+    <p class="muted">Trip packing comes first. The same engine will later answer "What do I wear tomorrow?" and "How do I style this piece?"</p>
+  </section>
+
+  <section class="cta">
+    <div class="label"><span>Nº 4</span><span>Try it</span></div>
+    <h2>Plan your next trip.</h2>
+    <a class="btn" href="https://capsule-collectiv.vercel.app" target="_blank" rel="noopener">Open the app <span>→</span></a>
+    <p class="note">Private preview. Ask Natasha for the password.</p>
+  </section>
+
+  <p class="end">See you on the road.</p>
+</div>
+</body>
+</html>
